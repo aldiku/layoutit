@@ -138,7 +138,6 @@ $(document).ready(function () {
 
   /* fin drageable sortable  */
   $("body").on("click", "#button-download-modal", function (e) {
-    console.log("clicked");
     e.preventDefault();
     downloadLayoutSrc();
   });

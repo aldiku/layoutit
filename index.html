@@ -2103,71 +2103,6 @@
       </button>
     </div>
 
-    <script>
-      function saveLayout() {
-        $.ajax({
-          type: "POST",
-          //url: "/build_v4/saveLayout",
-          data: { "layout-v4": $(".demo").html() },
-          success: function (data) {},
-        });
-      }
-
-      function downloadLayout() {
-        $.ajax({
-          type: "POST",
-          //url: "/build_v4/downloadLayout",
-          data: { "layout-v4": $("#download-layout").html() },
-          success: function (data) {
-            window.location.href = "/build_v4/download";
-          },
-        });
-      }
-
-      function downloadHtmlLayout() {
-        $.ajax({
-          type: "POST",
-          //url: "/build_v4/downloadLayout",
-          data: { "layout-v4": $("#download-layout").html() },
-          success: function (data) {
-            window.location.href = "/build_v4/downloadHtml";
-          },
-        });
-      }
-
-      function undoLayout() {
-        $.ajax({
-          type: "POST",
-          //url: "/build_v4/getPreviousLayout",
-          data: {},
-          success: function (data) {
-            undoOperation(data);
-          },
-        });
-      }
-
-      function redoLayout() {
-        $.ajax({
-          type: "POST",
-          //url: "/build_v4/getPreviousLayout",
-          data: {},
-          success: function (data) {
-            redoOperation(data);
-          },
-        });
-      }
-    </script>
-
-    <script type="text/javascript">
-      $(document).ready(function () {
-        // Mobile sidebar
-        $("#sidebar-mobile").on("click", function () {
-          $(this).toggleClass("active");
-          $(".sidebar-nav").toggleClass("active");
-        });
-      });
-    </script>
-
     <div
       class="modal fade"
       id="layoutitModal"
@@ -2227,10 +2162,37 @@
             </p>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-primary" id="download">Save</button>
+            <button class="btn btn-primary" id="downloadResult">Save</button>
           </div>
         </div>
       </div>
     </div>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        // Mobile sidebar
+        $("#sidebar-mobile").on("click", function () {
+          $(this).toggleClass("active");
+          $(".sidebar-nav").toggleClass("active");
+        });
+
+        $("#downloadResult").on("click", function (e) {
+          e.preventDefault();
+          var result = $("#resultHtml").val();
+          var builder = $(".demo").html();
+          console.log(result);
+          /* use result or builder layout as you want
+          $.ajax({  
+            type: "POST",  
+            url: "/build/saveLayout",  
+            data: { builder: builder, result : result},  
+            success: function(data) {
+              //do some function
+            }
+          });
+          */
+        });
+      });
+    </script>
   </body>
 </html>
